@@ -34,8 +34,18 @@ ball.color('black')
 ball.penup()
 ball.goto(x=0, y=0)
 
-ball_dx = 0.2
-ball_dy = 0.2
+ball_dx = 0.3
+ball_dy = 0.3
+
+#pen
+pen = tr.Turtle()
+pen.speed()
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Player A: 0 | Player B: 0", aling = "center", font = ("sans-serif", 24, "normal"))
+
 
 #function 
 def player_1_up():
@@ -78,16 +88,25 @@ while True:
   #border ckeking
   if ball.ycor() > 290:
     ball.sety(290)
-    ball_dy *= -1
+    ball_dy *= -0.9
   
   if ball.ycor() < -290:
     ball.sety(-290)
-    ball_dy *= -1
+    ball_dy *= -0.9
     
   if ball.xcor() > 390:
     ball.goto(0,0)
-    ball_dx *= -1
+    ball_dx *= -0.9
     
   if ball.xcor() < -390:
     ball.goto(0,0)
-    ball_dx *= -1
+    ball_dx *= -0.9
+    
+  #collisions ball y paddle
+  if ball.xcor() > 340 and ball.xcor() < 350 and ball.ycor() < player_2.ycor() + 54 and ball.ycor() > player_2.ycor() - 50:
+    ball.setx(340)
+    ball_dx *= -0.9
+    
+  if ball.xcor()  < -340 and ball.xcor() > -350 and ball.ycor() < player_1.ycor() + 54 and ball.ycor() > player_1.ycor() - 50:
+    ball.setx(-340)
+    ball_dx *= -0.9
