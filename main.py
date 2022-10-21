@@ -1,6 +1,7 @@
 #game pong
 
 import turtle as tr
+import winsound 
 
 screen = tr.Screen()
 screen.title("Pong by Jorge")
@@ -11,6 +12,8 @@ screen.tracer(0)
 #Score 
 score_1 = 0
 score_2 = 0
+
+
 
 
 #player 1
@@ -40,7 +43,7 @@ ball.penup()
 ball.goto(x=0, y=0)
 
 ball_dx = 0.3
-ball_dy = 0.3
+ball_dy = -0.3
 
 #pen
 pen = tr.Turtle()
@@ -94,10 +97,13 @@ while True:
   if ball.ycor() > 290:
     ball.sety(290)
     ball_dy *= -0.9
+    #sound
+    #winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
   
   if ball.ycor() < -290:
     ball.sety(-290)
     ball_dy *= -0.9
+    #winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
     
   if ball.xcor() > 390:
     ball.goto(0,0)
@@ -117,7 +123,9 @@ while True:
   if ball.xcor() > 340 and ball.xcor() < 350 and ball.ycor() < player_2.ycor() + 54 and ball.ycor() > player_2.ycor() - 50:
     ball.setx(340)
     ball_dx *= -0.9
+    #winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
     
   if ball.xcor()  < -340 and ball.xcor() > -350 and ball.ycor() < player_1.ycor() + 54 and ball.ycor() > player_1.ycor() - 50:
     ball.setx(-340)
     ball_dx *= -0.9
+    #winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
