@@ -8,6 +8,11 @@ screen.bgcolor("red")
 screen.setup(width=800, height=600)
 screen.tracer(0)
 
+#Score 
+score_1 = 0
+score_2 = 0
+
+
 #player 1
 player_1 = tr.Turtle()
 player_1.speed(0)
@@ -40,11 +45,11 @@ ball_dy = 0.3
 #pen
 pen = tr.Turtle()
 pen.speed()
-pen.color("white")
+pen.color("black")
 pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
-pen.write("Player A: 0 | Player B: 0", aling = "center", font = ("sans-serif", 24, "normal"))
+
 
 
 #function 
@@ -97,10 +102,16 @@ while True:
   if ball.xcor() > 390:
     ball.goto(0,0)
     ball_dx *= -0.9
+    score_1 += 1
+    pen.clear()
+    pen.write(f"Player A: {score_1} | Player B: {score_2}", align = "center", font = ("Courier", 24, "bold"))
     
   if ball.xcor() < -390:
     ball.goto(0,0)
     ball_dx *= -0.9
+    score_2 += 1
+    pen.clear()
+    pen.write(f"Player A: {score_1} | Player B: {score_2}", align = "center", font = ("Courier", 24, "bold"))
     
   #collisions ball y paddle
   if ball.xcor() > 340 and ball.xcor() < 350 and ball.ycor() < player_2.ycor() + 54 and ball.ycor() > player_2.ycor() - 50:
