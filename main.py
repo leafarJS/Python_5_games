@@ -34,6 +34,9 @@ ball.color('black')
 ball.penup()
 ball.goto(x=0, y=0)
 
+ball_dx = 0.2
+ball_dy = 0.2
+
 #function 
 def player_1_up():
   y = player_1.ycor()
@@ -67,3 +70,24 @@ screen.onkeypress(player_2_down, "Down")
 # Main game loop
 while True:
   screen.update()
+  
+  #move the ball
+  ball.setx(ball.xcor() + ball_dx)
+  ball.sety(ball.ycor() + ball_dy)
+  
+  #border ckeking
+  if ball.ycor() > 290:
+    ball.sety(290)
+    ball_dy *= -1
+  
+  if ball.ycor() < -290:
+    ball.sety(-290)
+    ball_dy *= -1
+    
+  if ball.xcor() > 390:
+    ball.goto(0,0)
+    ball_dx *= -1
+    
+  if ball.xcor() < -390:
+    ball.goto(0,0)
+    ball_dx *= -1
